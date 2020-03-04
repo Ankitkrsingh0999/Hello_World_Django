@@ -10,7 +10,7 @@ pipeline {
       agent any 
       steps {
 	withSonarQubeEnv('sonarserver') {
-	  sh 'mvn clean package sonar:sonar'
+	  sh '/opt/sonar-scanner/bin/sonar-scanner'
 	}
       }
     }
