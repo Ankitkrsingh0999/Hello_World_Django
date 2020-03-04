@@ -1,0 +1,36 @@
+version: '3.3'
+
+services:
+  db:
+    restart: always
+    image: postgres:9.5
+
+    volumes:
+      - data::/var/lib/postgresql/data
+    volumes:
+      - ./postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./backups/postgresql:/backup
+    environment:
+      - POSTGRES_DB=hello
+      - POSTGRES_USER=world
+      - POSTGRES_PASSWORD=supersecret
+    ports:
+      - "5432:5432"
+
+
+  web:
+    restart: always
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./projectile:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+volumes:
+  projectile: 
+  data:
+
+  
