@@ -10,7 +10,7 @@ pipeline {
       agent any 
       steps {
 	withSonarQubeEnv('sonarserver') {
-	  sh '/opt/sonar-scanner/bin/sonar-scanner'
+	  sh '/opt/sonarqube/bin/linux-x86-64'
 	}
       }
     }
