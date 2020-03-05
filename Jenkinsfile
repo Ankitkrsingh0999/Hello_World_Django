@@ -19,14 +19,11 @@ pipeline {
 	}
       }
     }
-    stage("Quality Gate") {
-      steps {
-        timeout(time: 5, unit: 'MINUTES') {
-                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
-                    // true = set pipeline to UNSTABLE, false = don't
-           waitForQualityGate abortPipeline: true
-         }
+    steps {
+      withDockerRegistry([ credentialsId: "dockerhub" ]) {
+      // following commands will be executed within logged docker registry
+         sh 'docker push <ankit0999/hello_world_devops>'
       }
-    }  
+    }	  
   }
 }
