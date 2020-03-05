@@ -19,11 +19,13 @@ pipeline {
 	}
       }
     }
-    steps {
-      withDockerRegistry([ credentialsId: "dockerhub" ]) {
+    stage('Build image') {	  
+      steps {
+        withDockerRegistry([ credentialsId: "dockerhub" ]) {
       // following commands will be executed within logged docker registry
-         sh 'docker push <ankit0999/hello_world_devops>'
+          sh 'docker push <ankit0999/hello_world_devops>'
+        }
       }
-    }	  
+    }	    
   }
 }
