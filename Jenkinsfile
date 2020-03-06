@@ -23,12 +23,17 @@ pipeline {
        }
     }
     stage('Build image') {	  
-      steps {
-        withDockerRegistry([ credentialsId: "dockerhub", url: "https://hub.docker.com/repository/docker/ankit0999/hello_world_devops" ]) {
-      // following commands will be executed within logged docker registry
-          sh 'docker push <ankit0999/hello_world_devops>'
+        environment {
+            registry = "ankit0999/docker-test"
+            registryCredential = ‘dockerhub’
         }
-      }
+    }
+    stage('Building image') {
+        steps{
+            script {
+              docker.build registry + ":$BUILD_NUMBER"
+            }
+        }
     }	    
   }
 }
