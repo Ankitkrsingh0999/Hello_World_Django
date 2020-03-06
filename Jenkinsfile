@@ -9,15 +9,18 @@ pipeline {
         slackSend(message: 'test', baseUrl: 'https://hooks.slack.com/services/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', botUser: true)
       }
     }
-    stage("Build and Sonarqube analysis") {
-      environment {
-        scannerHome = tool 'sonar-scanner'
-      }
-      steps {
-	withSonarQubeEnv('sonarserver') {
-	  sh "${scannerHome}/bin/sonar-scanner"
-	}
-      }
+    stage('Sonarqube') {
+        environment {
+            scannerHome = tool 'sonar-scanner'
+        }    
+	steps {
+             withSonarQubeEnv('sonarserver') {
+                 sh "${scannerHome}/bin/sonar-scanner"
+             }        
+             timeout(time: 10, unit: 'MINUTES') {
+                 waitForQualityGate abortPipeline: true
+             }
+       }
     }
     stage('Build image') {	  
       steps {
