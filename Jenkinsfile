@@ -25,7 +25,7 @@ pipeline {
     stage('Build image') {	  
         environment {
             registry = "ankit0999/docker-test"
-            registryCredential = ‘dockerhub’
+            registryCredential = "dockerhub"
         }
     }
     stage('Building image') {
