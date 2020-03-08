@@ -18,17 +18,33 @@ pipeline {
                  sh "${scannerHome}/bin/sonar-scanner"
              }        
        }
-    }
-    stage('Build image') {	  
+    }	  
+    stage('DockerHub') {	  
         environment {
-            registry = "ankit0999/docker-test:latest"
+            registry = "ankit0999/docker-test"
             registryCredential = "dockerhub"
         }
+    }
+    stage('Cloning Git') {
+       steps {
+	 git 'https://github.com/Ankitkrsingh0999/Hello_World_Django.git'
+       }
+    }
+    stage('Build Image') {	  
         steps{
             script {
-              docker.build registry + ":$BUILD_NUMBER"
+              dockerImage = docker.build registry + ":$BUILD_NUMBER"
             }
         }
-    }	    
+    }
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+	  }
+	}
+      }
+    }
   }
 }
