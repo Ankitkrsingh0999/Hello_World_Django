@@ -17,14 +17,11 @@ pipeline {
              withSonarQubeEnv('sonarserver') {
                  sh "${scannerHome}/bin/sonar-scanner"
              }        
-             timeout(time: 10, unit: 'MINUTES') {
-                 waitForQualityGate abortPipeline: true
-             }
        }
     }
     stage('Build image') {	  
         environment {
-            registry = "ankit0999/docker-test"
+            registry = "ankit0999/docker-test:latest"
             registryCredential = "dockerhub"
         }
         steps{
