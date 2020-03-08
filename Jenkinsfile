@@ -32,7 +32,7 @@ pipeline {
       agent any
       steps{
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          dockerImage = docker.build("ankit0999/docker-test")
         }
       }
     }
