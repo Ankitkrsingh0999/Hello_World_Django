@@ -24,12 +24,10 @@ pipeline {
             registry = "ankit0999/docker-test"
             registryCredential = "dockerhub"
         }
-    }
-    stage('Cloning Git') {
        steps {
 	 git 'https://github.com/Ankitkrsingh0999/Hello_World_Django.git'
        }
-    }
+    }	    
     stage('Build Image') {	  
         steps{
             script {
