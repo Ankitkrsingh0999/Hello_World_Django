@@ -28,7 +28,8 @@ pipeline {
 	 git 'https://github.com/Ankitkrsingh0999/Hello_World_Django.git'
        }
     }	    
-    stage('Build Image') {	  
+    stage('Build Image') {
+      agent any
       steps{
         script {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
@@ -36,6 +37,7 @@ pipeline {
       }
     }
     stage('Deploy Image') {
+      agent any
       steps{
         script {
           docker.withRegistry( '', registryCredential ) {
