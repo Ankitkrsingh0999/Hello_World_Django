@@ -19,7 +19,8 @@ pipeline {
              }        
        }
     }	  
-    stage('DockerHub') {	  
+    stage('DockerHub') {
+	agent any
         environment {
             registry = "ankit0999/docker-test"
             registryCredential = "dockerhub"
@@ -29,7 +30,6 @@ pipeline {
        }
     }	    
     stage('Build Image') {
-      agent any
       steps{
         script {
           dockerImage = docker.build("ankit0999/docker-test")
@@ -37,7 +37,6 @@ pipeline {
       }
     }
     stage('Deploy Image') {
-      agent any
       steps{
         script {
           docker.withRegistry( '', registryCredential ) {
