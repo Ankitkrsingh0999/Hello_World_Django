@@ -40,7 +40,8 @@ pipeline {
       steps{
         script {
           docker.withRegistry( '', registryCredential = "dockerhub" ) {
-            dockerImage.push()
+          sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+            dockerImage.push("ankit0999/docker-test:build")
 	  }
 	}
       }
