@@ -39,7 +39,7 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-          docker.withRegistry( 'ankit0999/docker-test', registryCredential = "dockerhub" ) {
+          docker.withRegistry( '', registryCredential = "dockerhub" ) {
             dockerImage.push()
 	  }
 	}
