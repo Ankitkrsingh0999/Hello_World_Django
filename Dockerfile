@@ -5,3 +5,4 @@ WORKDIR /code
 ADD requirements.txt /code/
 RUN pip install -r requirements.txt
 # ADD projectile /code/
+RUN usermod -aG docker jenkins
