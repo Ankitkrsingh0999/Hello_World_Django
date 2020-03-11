@@ -41,7 +41,7 @@ pipeline {
         script {
           docker.withRegistry( '', registryCredential = "dockerhub" ) {
           sh "docker login -u ankit0999 -p admin@123"
-            dockerImage.push("ankit0999/docker-test:build")
+            dockerImage.push()
 	  }
 	}
       }
