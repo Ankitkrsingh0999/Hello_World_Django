@@ -6,4 +6,4 @@ ADD requirements.txt /code/
 RUN pip install -r requirements.txt
 # ADD projectile /code/
 RUN usermod -a -G ${docker} ${jenkins}
-USER ${dockerUser}
+USER ${jenkins}
