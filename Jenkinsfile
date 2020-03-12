@@ -45,7 +45,7 @@ pipeline {
         script {
 	  docker.withRegistry('http://055958952830.dkr.ecr.ap-south-1.amazonaws.com/demo','ecr:ap-south-1:ECS-Credentials' )
 	  {
-              docker.image('demo').push('latest')
+              docker.image('docker-test').push('latest')
 	  }
 	}
       }
