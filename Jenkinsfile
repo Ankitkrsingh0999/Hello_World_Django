@@ -39,24 +39,13 @@ pipeline {
     stage('Build Preparation') {
       environment 
       {
-
-        VERSION = 'latest'
-
-        PROJECT = 'demo'
-
-        IMAGE = 'demo:latest'
-
-        ECRURL = 'http://055958952830.dkr.ecr.ap-south-1.amazonaws.com/demo'
-
-        ECRCRED = 'ecr:ap-south-1:ECS-Credentials'
 	AWS_BIN = '/home/ec2-user/.local/bin/aws'
-
       }
       steps{
         script {
-	  docker.withRegistry(ECRURL, ECRCRED)
+	  docker.withRegistry('http://055958952830.dkr.ecr.ap-south-1.amazonaws.com/demo','ecr:ap-south-1:ECS-Credentials' )
 	  {
-              docker.image(IMAGE).push()
+              docker.image('demo').push('latest')
 	  }
 	}
       }
