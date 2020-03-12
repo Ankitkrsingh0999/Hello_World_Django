@@ -39,7 +39,6 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-          RUN pip install awscli --upgrade
           sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 055958952830.dkr.ecr.ap-south-1.amazonaws.com/demo' 
             docker.Image('docker-test').push('latest')
 	}
