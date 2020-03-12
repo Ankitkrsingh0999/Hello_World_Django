@@ -39,9 +39,8 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-          docker.withRegistry( '', registryCredential = "dockerhub" ) {
-          sh "docker login -u  -p  "
-            dockerImage.push()
+          docker.withRegistry( 'https://055958952830.dkr.ecr.ap-south-1.amazonaws.com/demo', 'ecr:ap-south-1:ECR-Credentials' ) {
+            docker.Image('docker-test').push('latest')
 	  }
 	}
       }
