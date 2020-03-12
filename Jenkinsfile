@@ -37,9 +37,7 @@ pipeline {
       }
     }
     stage('Deploy Image') {
-      agent any
       environment 
-
       {
 
         VERSION = 'latest'
