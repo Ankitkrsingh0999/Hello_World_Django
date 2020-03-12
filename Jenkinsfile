@@ -40,7 +40,7 @@ pipeline {
       agent any
       environment 
 
-    {
+      {
 
         VERSION = 'latest'
 
@@ -52,6 +52,7 @@ pipeline {
 
         ECRCRED = 'ecr:ap-south-1:ECR-Credentials'
 
+      }
     }
 
     stage('Build preparations')
