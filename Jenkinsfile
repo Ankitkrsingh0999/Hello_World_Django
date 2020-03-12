@@ -48,7 +48,7 @@ pipeline {
 
         ECRURL = 'http://055958952830.dkr.ecr.ap-south-1.amazonaws.com/demo'
 
-        ECRCRED = 'ecr:ap-south-1:ECR-Credentials'
+        ECRCRED = 'ecr:ap-south-1:ECS-Credentials'
 	AWS_BIN = '/home/ec2-user/.local/bin/aws'
 
       }
