@@ -44,7 +44,7 @@ pipeline {
 
         PROJECT = 'docker-test'
 
-        IMAGE = 'docker-test:latest'
+        IMAGE = 'ankit0999/docker-test:latest'
 
         ECRURL = 'http://055958952830.dkr.ecr.ap-south-1.amazonaws.com/demo'
 
