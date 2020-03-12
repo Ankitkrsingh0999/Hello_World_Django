@@ -54,9 +54,6 @@ pipeline {
       }
       steps{
         script {
-	  withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-              AWS("--region=ap-south-1")
-	  }
 	  docker.withRegistry(ECRURL, ECRCRED)
 	  {
               docker.image(IMAGE).push()
