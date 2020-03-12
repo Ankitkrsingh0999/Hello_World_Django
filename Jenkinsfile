@@ -53,6 +53,22 @@ pipeline {
         ECRCRED = 'ecr:ap-south-1:ECR-Credentials'
 
     }
+
+    stage('Build preparations')
+    {
+      steps
+      {
+        script 
+        {
+            gitCommitHash = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+            shortCommitHash = gitCommitHash.take(7)
+            VERSION = shortCommitHash
+            currentBuild.displayName = "#${BUILD_ID}-${VERSION}"
+            IMAGE = "$PROJECT:$VERSION"
+        }
+      }
+    }
+    stage('Deploy Image'){
       steps{
         script {
 	  sh("eval \$(aws ecr get-login --no-include-email | sed 's|https://||')")
