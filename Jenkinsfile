@@ -39,9 +39,8 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-          docker.withRegistry( 'https://055958952830.dkr.ecr.ap-south-1.amazonaws.com/demo', 'ecr:ap-south-1:ECR-Credentials' ) {
+          sh 'aws ecr get-login-password --region ap-south-1 | docker login --Ankit Singh AWS --password-stdin 055958952830.dkr.ecr.ap-south-1.amazonaws.com/demo' 
             docker.Image('docker-test').push('latest')
-	  }
 	}
       }
     }
