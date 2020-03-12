@@ -51,10 +51,6 @@ pipeline {
         ECRCRED = 'ecr:ap-south-1:ECR-Credentials'
 
       }
-    }
-
-    stage('Build preparations')
-    {
       steps
       {
         script 
