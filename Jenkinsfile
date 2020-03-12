@@ -49,25 +49,15 @@ pipeline {
         ECRURL = 'http://055958952830.dkr.ecr.ap-south-1.amazonaws.com/demo'
 
         ECRCRED = 'ecr:ap-south-1:ECR-Credentials'
+	AWS_BIN = '/home/ec2-user/.local/bin/aws'
 
-      }
-      steps
-      {
-        script 
-        {
-            gitCommitHash = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
-            shortCommitHash = gitCommitHash.take(7)
-            VERSION = shortCommitHash
-            currentBuild.displayName = "#${BUILD_ID}-${VERSION}"
-            IMAGE = "$PROJECT:$VERSION"
-        }
       }
     }
     stage('Deploy Image'){
       steps{
         script {
 	  withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-          AWS("--region=eu-west-1 s3 ls")
+              AWS("--region=eu-west-1 s3 ls")
 	  }
 	  docker.withRegistry(ECRURL, ECRCRED)
 	  {
