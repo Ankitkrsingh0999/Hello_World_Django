@@ -43,9 +43,8 @@ pipeline {
       }
       steps{
         script {
-	  docker.withRegistry('http://055958952830.dkr.ecr.ap-south-1.amazonaws.com/demo','ecr:ap-south-1:ECS-Credentials' )
+	  docker.withRegistry('http://055958952830.dkr.ecr.ap-south-1.amazonaws.com','ecr:ap-south-1:ECS-Credentials' )
 	  {
-	      sh 'docker tag docker-test:latest 055958952830.dkr.ecr.ap-south-1.amazonaws.com/docker-test:latest'
               sh 'docker push ankit0999/docker-test'
 	  }
 	}
