@@ -8,3 +8,5 @@ RUN pip install awscli --upgrade --user
 # ADD projectile /code/
 #RUN usermod -a -G ${docker} ${jenkins}
 #USER ${jenkins}
+COPY . /code
+EXPOSE 8000
